@@ -1,72 +1,96 @@
-# Soft Fork
+<p align="center"><img src="assets/cover.jpg" alt="Soft Fork feed cover" width="180"></p>
 
-Soft Fork is my daily AI podcast. Two hosts, Maya and Theo, spend about 45 minutes on what's trending in AI tools, gossip first and tech second. It was called "AI Tools Daily" until it was renamed on October 6, 2026.
+<h1 align="center">Soft Fork</h1>
 
-This repo shows how the agent behind it finds the news, chooses what goes in, and turns it into an episode and a workshop. The exact prompts are in [prompts/muse-soft-fork-prompts.md](prompts/muse-soft-fork-prompts.md).
+<p align="center"><b>Subscribe:</b> paste this RSS feed into any podcast app that accepts a feed link, such as Apple Podcasts, Overcast, or Pocket Casts.</p>
 
-## The basics
+```
+https://muse.ai/podcasts/feed/1195108097011732/642ffc17-909b-4c25-a2ce-323d47246b4e
+```
 
-- **Where it's hosted:** an AI agent called Muse runs it as a scheduled cloud job. It doesn't need my Mac to be on.
-- **Cadence:** the main job (`ai-tools-daily`) runs daily at about 7:43 AM PT. A watchdog job (`ai-tools-daily-watchdog`) runs at about 10:43 AM PT to make sure the episode went out. An Instagram job is saved but has been turned off since October 15, 2026.
-- **What it reads:** yesterday's snips file, recent episode topics from the podcast manifest, and the web through browser search and real pages and videos.
-- **What it writes and where:** a daily snips file, a 45-minute episode on the Soft Fork feed on muse.ai (it also shows up in Apple Podcasts), a transcript, a 60-minute workshop with a handout, a message in Muse's main chat, and two posts in the #podcast channel of the La Maison Slack workspace. The posts are the episode links and a short video highlight.
-- **Why it matters:** it keeps me current on AI tools every day and turns the best story into a hands-on workshop for small business owners.
-- **Where runs are logged:** each run writes notes to Muse's daily memory log (`~/memory/YYYY-MM-DD.md`). The dated snips file and the podcast manifest also show what ran. If anything fails, I get an email and the chat message starts with "LOUD".
+Soft Fork is my daily AI podcast. Two AI hosts, Maya and Theo, talk for about 45 minutes about what's trending in AI tools. Gossip comes first and tech comes second. The show was called "AI Tools Daily" until October 6, 2026.
+
+An AI agent called Muse makes every episode. Muse's exact prompts are in [prompts/muse-soft-fork-prompts.md](prompts/muse-soft-fork-prompts.md).
+
+## How it runs
+
+- **Host:** Muse runs Soft Fork as a scheduled cloud job. My computer doesn't need to be on.
+- **Schedule:** The main job, `ai-tools-daily`, runs every day at about 7:43 AM PT. The watchdog job, `ai-tools-daily-watchdog`, runs at about 10:43 AM PT. A saved Instagram job has been turned off since October 15, 2026.
+- **Inputs:** The job reads yesterday's research file, recent episode topics from the catalog, and real web pages and videos.
+- **Outputs:** Each run writes the items below.
+  - A research file of 10 to 14 short summaries. Muse calls each summary a snip.
+  - A 45-minute episode on the Soft Fork feed.
+  - A word-for-word transcript.
+  - A 60-minute workshop plan and a printable handout.
+  - A message in Muse's main chat.
+  - Two posts in the #podcast channel of the La Maison Slack workspace. The first post has the episode, transcript, workshop, and handout links. The second post has a short video highlight.
+- **Logs:** Each run writes notes to Muse's daily memory log at `~/memory/YYYY-MM-DD.md`. The catalog also records every episode.
+- **Failure alerts:** If any check fails, Muse emails me. The chat message then starts with "LOUD".
 
 ## How the agent searches
 
-1. **Duplicate check first.** If today's episode is already in the manifest, it posts a one-line note and stops.
-2. **Start from yesterday.** It opens yesterday's snips file, keeps its source list and format and only looks for what is new or changed.
-3. **Focus.** It looks for what people are talking about and demonstrating in AI consumer tools today: automations, agent loops, skills, plugins, and end-to-end workflows. One-off prompt tricks are out. It keeps an eye on Grok Bot, ChatGPT, Codex, Claude Code, and Gemini.
-4. **Must-check sources.** These are Claire Vo's "How I AI", Lenny's Podcast and Lenny's Newsletter, Airtable's "Built on Air" podcast, and demo videos people share on YouTube, X, and TikTok.
-5. **How it searches.** It uses browser search on the news vertical for recency and opens real pages and videos. It prefers items from the last 7 days.
-6. **No making things up.** It never invents episodes, links, or tool features. It only reports what it confirmed on a real page.
+1. Muse runs `podcast-helper manifest read`. It stops if today's episode is already in the catalog.
+2. Muse opens yesterday's research file and keeps its source list. It looks only for news that is new or changed.
+3. Muse looks for automations, agent loops, skills, plugins, and end-to-end workflows in AI consumer tools. It skips one-off prompt tricks.
+4. Muse follows Grok Bot, ChatGPT, Codex, Claude Code, and Gemini.
+5. Muse always checks "How I AI" with Claire Vo, Lenny's Podcast and Lenny's Newsletter, Airtable's "Built on Air" podcast, and demo videos shared on YouTube, X, and TikTok.
+6. Muse searches news results and opens the real pages and videos. It prefers items from the last 7 days.
+7. Muse reports only what it confirmed on a real page. It never invents episodes, links, or tool features.
 
 ## How it chooses what goes in
 
-- **Snips:** it saves 10 to 14 snips. Each one has the source, the title, the date, the link, and a 3 to 5 sentence summary. The summary says what the tool does, what the demo showed, the real use case and whether it's a loop, workflow, or plugin or just a one-off.
-- **Fresh topics:** before writing, it reads recent episodes' topics and steers away from repeats.
-- **Episode slots:** the biggest story gets Deep dive 1 (12 to 15 minutes). The second biggest gets Deep dive 2 (10 to 12 minutes). The rest go in a rapid-fire roundup at about a minute each. The cold open riffs on the day's wildest or funniest item.
-- **Workshop pick:** the one snip with the richest end-to-end workflow and the best fit for small business owners. It becomes a 60-minute workshop with a plain name that says what it teaches.
-- **Video highlight:** the best teaching moment from the episode, the thing a listener would miss out on, not just the flashiest news.
+- **Snips:** Each snip lists the source, title, date, and link. Its summary says what the tool does and what the demo showed. The summary also says whether the item is a reusable workflow or a one-off.
+- **Repeats:** Muse reads the topics of recent episodes and picks fresh material.
+- **Cold open:** The hosts riff on the day's wildest or funniest item for 2 to 3 minutes.
+- **Deep dives:** The biggest story gets 12 to 15 minutes. The second biggest story gets 10 to 12 minutes.
+- **Roundup:** The remaining snips get about one minute each.
+- **Workshop pick:** The snip with the richest end-to-end workflow for small business owners becomes the day's workshop. The workshop name must say what it teaches.
+- **Video highlight:** Muse picks the episode's best teaching moment for the video. It avoids picking the flashiest news.
 
 ## How the episode is made
 
-- **Script:** about 7,500 to 8,000 words of spoken dialogue with no links, markup, or stage directions.
-- **Tone:** loose and funny with jargon explained in one plain sentence. Laughs are written into the lines and build up slowly, with 2 to 4 real shared laughs per episode.
-- **Audio:** `podcast-helper generate` makes the audio with fixed voices and a fixed pixel-art giraffe cover. Then `podcast-helper publish` puts it on the Soft Fork feed. The generated audio is the episode.
-- **Failed audio:** if it fails, the job retries with the same voices on a growing delay and never ships a partial episode.
+- **Script:** Muse writes about 7,500 to 8,000 words of spoken dialogue. The script has no links, markup, or stage directions.
+- **Tone:** The hosts explain each needed technical term in one plain sentence. Laughs are written into the lines. Each episode has 2 to 4 big shared laughs.
+- **Audio:** `podcast-helper generate` makes the audio with fixed voices and the `soft-fork-v1` series cover.
+- **Publishing:** `podcast-helper publish --slug <slug> --feed-title "Soft Fork"` puts the episode on the feed. A blocked publish counts as a failure and is never retried.
+- **Voice failures:** Muse retries after about 5 minutes, 10 minutes, 30 minutes, and 1 hour. It never ships a partial episode.
+- **Slack links:** `remote-storage upload-file` gives the transcript, workshop, handout, and video public links. The links expire after 48 hours or less.
 
 ## Workflow
 
 ```mermaid
 flowchart TD
-    A[Daily at about 7:43 AM PT] --> B{Already published today?}
-    B -- Yes --> Z[Note and stop]
-    B -- No --> C[Start from yesterday's snips]
-    C --> D[Search news and open real pages]
-    D --> E[10 to 14 verified snips plus a Workshop pick]
-    E --> F[45-minute script]
-    F --> G[Generate and publish on muse.ai]
-    E --> H[60-minute workshop and handout]
-    G --> I[Chat delivery and Slack #podcast]
+    A[ai-tools-daily at about 7:43 AM PT] --> B{podcast-helper manifest read:<br/>already published today?}
+    B -- Yes --> Z[Post a note and stop]
+    B -- No --> C[Research from yesterday's snips]
+    C --> D[10 to 14 snips and a workshop pick]
+    D --> E[45-minute script]
+    E --> F[podcast-helper generate]
+    F --> G[podcast-helper publish]
+    D --> H[Workshop and handout]
+    G --> I[remote-storage upload-file]
     H --> I
-    I --> J{All checks pass?}
-    J -- No --> K[Email and LOUD message]
-    L[Watchdog at about 10:43 AM PT] --> M{Episode published?}
-    M -- No --> K
+    I --> J[Chat delivery and Slack #podcast posts]
+    J --> K{All checks pass?}
+    K -- No --> L[Email and LOUD message]
+    M[ai-tools-daily-watchdog at about 10:43 AM PT] --> N{podcast-helper manifest read:<br/>episode published?}
+    N -- No --> L
 ```
 
-More detail is in [docs/workflow.md](docs/workflow.md).
+[docs/workflow.md](docs/workflow.md) has the full flowchart. [docs/tools.md](docs/tools.md) explains both command line tools.
 
-## What's in this repo
+## Repo contents
 
-- `prompts/muse-soft-fork-prompts.md`: Muse's saved prompts for all three jobs, as Muse exported them on November 3, 2026, with private details removed.
+- `prompts/muse-soft-fork-prompts.md`: Muse's prompts for all three jobs, with private details removed.
 - `docs/workflow.md`: the full flowchart.
-- `examples/snips/`: 17 real daily snips files from October 1 to 23, 2026.
-- `examples/EPISODE-example.md`: how a workshop repo points back to its episode.
+- `docs/tools.md`: the reference for `podcast-helper` and `remote-storage`.
+- `tools/podcast_telemetry.py`: the helper file that `podcast-helper` loads.
+- `examples/snips/`: 17 daily research files from October 1 to 23, 2026.
+- `examples/EPISODE-example.md`: how a workshop repo links back to its episode.
+- `assets/cover.jpg`: the cover image from the RSS feed.
 
-## Still unknown
+## Not included
 
-- The podcast-helper and remote-storage tools belong to Muse. How they work inside isn't shown here.
-- The daily memory log lives inside Muse, so I can't link to it.
+- The `podcast-helper` script is not in this repo yet.
+- `remote-storage` is a compiled program with no readable source.
+- Muse's daily memory log is inside Muse and can't be linked.
