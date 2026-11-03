@@ -56,6 +56,14 @@ An AI agent called Muse makes every episode. Muse's exact prompts are in [prompt
 - **Voice failures:** Muse retries after about 5 minutes, 10 minutes, 30 minutes, and 1 hour. It never ships a partial episode.
 - **Slack links:** `remote-storage upload-file` gives the transcript, workshop, handout, and video public links. The links expire after 48 hours or less.
 
+## How I taught Muse to be funny
+
+- On October 8, 2026, I set the show's style: two funny co-hosts who put gossip first and tech second.
+- On October 17, 2026, I approved a set of laughter samples. Muse turned them into written reaction rules.
+- The rules ban bracket cues like [laughs] because they make no sound in the audio. Laughs are written into the lines as words, such as "Ha ha ha."
+- Reactions start small and build. A corny joke gets a groan instead of a laugh. Each episode saves 2 to 4 big shared laughs for real high points.
+- The target sound is the hosts' laughter in a Hard Fork episode named in the prompt.
+
 ## Workflow
 
 ```mermaid
@@ -88,6 +96,10 @@ flowchart TD
 - `examples/snips/`: 17 daily research files from October 1 to 23, 2026.
 - `examples/EPISODE-example.md`: how a workshop repo links back to its episode.
 - `assets/cover.jpg`: the cover image from the RSS feed.
+
+## License
+
+All rights reserved. You may view this repo on GitHub, but you may not copy, modify, or share it without my written permission. See [LICENSE](LICENSE).
 
 ## Not included
 
