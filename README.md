@@ -98,6 +98,7 @@ flowchart TD
 - `prompts/muse-soft-fork-prompts.md`: Muse's prompts for all three jobs, with private details removed.
 - `docs/workflow.md`: the full flowchart.
 - `docs/tools.md`: the reference for `podcast-helper` and `remote-storage`.
+- `tools/podcast-helper`: the script Muse runs to make, catalog, and publish episodes.
 - `tools/podcast_telemetry.py`: the helper file that `podcast-helper` loads.
 - `examples/snips/`: 17 daily research files from October 1 to 23, 2026.
 - `examples/EPISODE-example.md`: how a workshop repo links back to its episode.
@@ -109,6 +110,5 @@ All rights reserved. You may view this repo on GitHub, but you may not copy, mod
 
 ## Not included
 
-- The `podcast-helper` script is not in this repo yet.
 - `remote-storage` is a compiled program with no readable source.
 - Muse's daily memory log is inside Muse and can't be linked.
