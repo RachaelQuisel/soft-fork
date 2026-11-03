@@ -8,7 +8,7 @@ flowchart TD
     B -- Yes --> Z[Post a one-line note and stop]
     B -- No --> C[Start from yesterday's snips file<br/>research only what is new]
     C --> D[Search with browser.search news vertical<br/>open real pages and videos<br/>prefer the last 7 days]
-    D --> E[Must-check sources<br/>How I AI, Lenny's, Built on Air,<br/>demo videos on YouTube, X and TikTok]
+    D --> E[Must-check sources<br/>How I AI, Lenny's, Built on Air,<br/>demo videos on YouTube, X, and TikTok]
     E --> F[Save 10 to 14 verified snips<br/>plus one Workshop pick]
     F --> G[Read recent episode topics<br/>steer toward fresh material]
     G --> H[Write a 45-minute script<br/>Maya and Theo: cold open, 2 deep dives,<br/>roundup and close]
