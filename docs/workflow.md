@@ -1,19 +1,31 @@
 # Soft Fork workflow
 
-This is the flow as far as it can be seen from the files on hand. Steps marked "unknown" are not visible from here.
+This follows Muse's saved prompts in [prompts/muse-soft-fork-prompts.md](../prompts/muse-soft-fork-prompts.md).
 
 ```mermaid
 flowchart TD
-    A[Daily run by the Muse agent<br/>schedule: unknown] --> B[Search the last 2 to 3 days of AI tool news<br/>news sites, YouTube, newsletters, podcasts, LinkedIn, press releases]
-    B --> C{Can the claim be checked<br/>with a real page fetch or search result?}
-    C -- No --> X[Excluded and noted in the snips file]
-    C -- Yes --> D[Write a snip<br/>source, date, link, summary, workflow angle, caveats]
-    D --> E[Fresh steer<br/>skip what yesterday covered and follow the next beat]
-    E --> F[Daily snips file<br/>YYYY-MM-DD-ai-tools-trending.md]
-    F --> G[Slot each snip<br/>deep dive, rapid fire, roundup or cold open]
-    F --> H[Workshop pick<br/>richest end-to-end workflow for small business owners]
-    G --> I[Episode audio generated and published on muse.ai podcast feed<br/>method: unknown]
-    I --> J[Episode and highlights posted to the #podcast Slack channel]
-    H --> K[Automate Your Business workshop repo<br/>EPISODE.md, transcript, snips, workshop]
-    I --> L[X post drafts that credit the source and link the episode]
+    A[ai-tools-daily<br/>Muse cloud job, daily about 7:43 AM PT] --> B{Today's episode already<br/>in the podcast manifest?}
+    B -- Yes --> Z[Post a one-line note and stop]
+    B -- No --> C[Start from yesterday's snips file<br/>research only what is new]
+    C --> D[Search with browser.search news vertical<br/>open real pages and videos<br/>prefer the last 7 days]
+    D --> E[Must-check sources<br/>How I AI, Lenny's, Built on Air,<br/>demo videos on YouTube, X and TikTok]
+    E --> F[Save 10 to 14 verified snips<br/>plus one Workshop pick]
+    F --> G[Read recent episode topics<br/>steer toward fresh material]
+    G --> H[Write a 45-minute script<br/>Maya and Theo: cold open, 2 deep dives,<br/>roundup and close]
+    H --> I[podcast-helper generate<br/>fixed voices, giraffe cover, soft-fork-v1]
+    I --> J[podcast-helper publish to the Soft Fork feed on muse.ai]
+    J --> K[Save transcript.txt]
+    F --> L[60-minute workshop<br/>workshop.md and handout.md]
+    K --> M[Deliver to Muse's main chat]
+    L --> M
+    M --> N[Post episode, transcript, workshop<br/>and handout links to Slack #podcast]
+    N --> O[Build and post a teaching-moment video highlight]
+    O --> P{All checks pass?}
+    P -- Yes --> Q[Normal delivery]
+    P -- No --> R[Email Rachael and start the chat<br/>message with LOUD]
+    S[ai-tools-daily-watchdog<br/>daily about 10:43 AM PT] --> T{Today's episode published?}
+    T -- Yes --> U[Stay silent]
+    T -- No --> R
 ```
+
+A third job, ai-tools-daily-instagram, is saved but has been disabled since October 15, 2026, so it is left out of the chart.
