@@ -58,11 +58,17 @@ An AI agent called Muse makes every episode. Muse's exact prompts are in [prompt
 
 ## How I taught Muse to be funny
 
-- On October 8, 2026, I set the show's style: two funny co-hosts who put gossip first and tech second.
-- On October 17, 2026, I approved a set of laughter samples. Muse turned them into written reaction rules.
-- The rules ban bracket cues like [laughs] because they make no sound in the audio. Laughs are written into the lines as words, such as "Ha ha ha."
-- Reactions start small and build. A corny joke gets a groan instead of a laugh. Each episode saves 2 to 4 big shared laughs for real high points.
-- The target sound is the hosts' laughter in a Hard Fork episode named in the prompt.
+When I started Soft Fork, the hosts told jokes but never laughed. It sounded strange and flat. I noticed it and decided to fix it.
+
+I tested two ways to make the hosts laugh. In the first test, the laughs were written into the script as words, like "Ha ha ha." In the second test, I used stage directions, like [laughs]. The stage directions did nothing at all. The voices skipped right over them and there was no laughing in the audio. The written laughs worked.
+
+Written laughs alone were not enough. The voices sounded too monotone, and the laughs did not overlap the way real people laugh. So I built the next version line by line, with one host starting to laugh and the other host joining in, and a groan when a joke was corny. That was better, but the big shared laugh came too fast and felt fake.
+
+So I slowed it down. The final version starts straight, then a small "Heh," then one host chuckling alone, then a groan at the corny joke, and only later one big shared laugh that lasts and trails off. That version sounded real. It made me smile when I listened to it.
+
+Those rules are now written into the podcast's daily instructions: laughs are written as words, stage directions are banned, laughter builds up gradually, corny jokes get a groan, and there are two to four shared laughs in each episode.
+
+Now the hosts laugh like real co-hosts, and the podcast is genuinely funny.
 
 ## Workflow
 
